@@ -1,30 +1,41 @@
 <html>
 
-  <body>
-    <div id="app"></div>
+<body>
+  <div id="app"></div>
 
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script type="text/jsx">
-      const app = document.getElementById('app');
+  <script type="text/babel">
+    const app = document.getElementById('app');
 
-      function Header({title}) {
-        return <h1>{title}</h1>;
+    function Header({ title }) {
+      return <h1>{title}</h1>;
+    }
+
+    function HomePage() {
+      const [likes, setLikes] = React.useState(0);
+
+      const names = ['Ada Lovelace', 'Grace Hopper', 'Marie Curie'];
+
+
+      function handleClick() {
+        setLikes(likes + 1);
       }
 
-      function HomePage() {
-        const names = ['Ada Lovelace', 'Grace Hopper', 'Marie Curie'];
+      return (
+        <div><Header title="Develop. Preview. Ship. 🚀" />
+          <ul>
+            {names.map(name => <li key={name}>{name}</li>)}
+          </ul>
+          <button onClick={handleClick}>Likes ({likes})</button>
+        </div>
+      );
+    }
 
-      return <div><Header title="Develop. Preview. Ship. 🚀" />
-        <ul>
-          {names.map(name => <li key={name}>{name}</li>)}
-        </ul></div>
-      }
-
-        ReactDOM.render(<HomePage />, app);
-    </script>
-  </body>
+    ReactDOM.render(<HomePage />, app);
+  </script>
+</body>
 
 </html>
